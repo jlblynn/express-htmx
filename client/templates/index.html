@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fun Translations</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="/dist/output.css" rel="stylesheet">
+  <script src="/js/htmx/htmx.min.js"></script>
+</head>
+<body>
+  <h1>Fun Translations</h1>
+  <form hx-post="/translate" hx-target="#output">
+    <input type="text" name="text" placeholder="Enter text">
+    <select name="language">
+      <option value="pirate">Pirate</option>
+      <option value="yoda">Yoda</option>
+      <option value="valyrian">Valyrian</option>
+      <option value="shakespeare">Shakespeare</option>
+    </select>
+    <button class="bg-sky-500" type="submit">Translate</button>
+  </form>
+  <div id="output"></div>
+</body
