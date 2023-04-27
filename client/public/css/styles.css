@@ -2,10 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Tangerine';
+  src: url('/fonts/Tangerine-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rock Salt';
+  src: url('/fonts/RockSalt-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Lavishly Yours';
+  src: url('/fonts/LavishlyYours-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Dokdo';
+  src: url('/fonts/Dokdo-Regular.ttf') format('truetype');
+}
+
+/* Apply custom fonts to specific elements */
+option[value="shakespeare"] {
+  font-family: Tangerine, cursive;
+}
+
+option[value="pirate"] {
+  font-family: Rock Salt, cursive;
+}
+
+option[value="valyrian"] {
+  font-family: Lavishly Yours, cursive;
+}
+
+option[value="yoda"] {
+  font-family: Dokdo, cursive;
+}
+
 .bg-gray-light {
-  background-color: #f7fafc; /* replace with the light gray color of your choice */
+  background-color: #f7fafc;
 }
 
 .bg-white-custom {
-  background-color: #fff; /* replace with the white color of your choice */
+  background-color: #fff;
+}
+
+.btn {
+  @apply mt-4 bg-gray-300 text-white hover:bg-gray-400  py-2 px-4 rounded;
+}
+
+select {
+  box-shadow: none;
 }

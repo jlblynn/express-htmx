@@ -13,16 +13,19 @@
     <h1 class="flex text-3xl">Fun Translations</h1>
   </div>
 
-  <div class="bg-white-custom"> <!-- add bg-white-custom class to the form container -->
+  <div class="bg-white-custom rounded-xl mx-4 md:mx-5 py-4 md:py-5">
     <form hx-post="/translate" hx-target="#output" class="flex flex-col items-center">
-      <textarea type="text" id="input" name="text" rows="4" cols="40" placeholder="Enter something to translate..."></textarea>
-      <select name="language" class="mt-4">
-        <option value="pirate">🏴‍☠ Pirate</option>
-        <option value="yoda">👽 Yoda</option>
-        <option value="valyrian">🐉 Valyrian</option>
-        <option value="shakespeare">📃 Shakespeare</option>
-      </select>
-      <button class="mt-4 y-18 px-4 py-2 rounded-full text-white bg-gray-300 hover:bg-gray-400 focus:outline-none focus:shadow-outline-gray" type="submit">Translate</button>
+      <textarea type="text" id="input" name="text" rows="4" cols="40" placeholder="Enter something to translate..." class="w-[90%] md:w-auto px-2 py-1 md:px-4 md:py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 mb-2"></textarea>
+      <div class="flex flex-row items-center">
+        <select name="language" class="mr-8 hover:cursor-pointer h-8 mt-4 shadow-none appearance-none drop-shadow-none px-2">
+          <option value="" disabled selected>Select a language</option>
+          <option value="pirate">🏴‍☠ Pirate</option>
+          <option value="yoda" class="font-dokdo">👽 Yoda</option>
+          <option value="valyrian" class="font-lavishly_yours">🐉 Valyrian</option>
+          <option value="shakespeare" class="font-tangerine">📃 Shakespeare</option>
+        </select>
+        <button class="btn" type="submit" hx-disable="!this.value">Translate</button>
+      </div>
     </form>
   </div>
   <div id="output" class="flex justify-center my-12 font-bold italic"></div>

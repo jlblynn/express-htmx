@@ -5,6 +5,12 @@ import opn from 'opn';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
+import createDOMPurify from 'dompurify';
+import { JSDOM } from 'jsdom';
+
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
+
 const app = express();
 
 const funTranslationsApiUrl = 'https://api.funtranslations.com/translate/';
@@ -34,7 +40,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/translate', (req, res) => {
-  const text = req.body.text;
+  const text = DOMPurify.sanitize(req.body.text); // Sanitize the user input
   const language = req.body.language;
 
   const options = {
@@ -46,8 +52,14 @@ app.post('/translate', (req, res) => {
     if (error) {
       console.error(error);
     } else {
-      const translation = JSON.parse(body).contents.translated;
-      res.send(translation);
+      const json = JSON.parse(body);
+      if (json.success && json.contents && json.contents.translated) {
+        const translation = json.contents.translated;
+        res.send(translation);
+      } else {
+        console.error('Invalid JSON response:', body);
+        res.sendStatus(500);
+      }
     }
   });
 });
