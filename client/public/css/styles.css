@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-gray-light {
+  background-color: #f7fafc; /* replace with the light gray color of your choice */
+}
+
+.bg-white-custom {
+  background-color: #fff; /* replace with the white color of your choice */
+}
