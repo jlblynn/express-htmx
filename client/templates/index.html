@@ -13,20 +13,31 @@
     <h1 class="flex text-3xl">Fun Translations</h1>
   </div>
 
-  <div class="bg-white-custom rounded-xl mx-4 md:mx-5 py-4 md:py-5">
-    <form hx-post="/translate" hx-target="#output" class="flex flex-col items-center">
-      <textarea type="text" id="input" name="text" rows="4" cols="40" placeholder="Enter something to translate..." class="w-[90%] md:w-auto px-2 py-1 md:px-4 md:py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 mb-2"></textarea>
-      <div class="flex flex-row items-center">
-        <select name="language" class="mr-8 hover:cursor-pointer h-8 mt-4 shadow-none appearance-none drop-shadow-none px-2">
-          <option value="" disabled selected>Select a language</option>
+  <div class="bg-white-custom rounded-xl mx-5 px-4 md:w-80 lg:w-60 md:mx-auto">
+    <form hx-post="/translate" hx-target="#output" class="flex flex-col items-center py-5">
+      <textarea class="w-full mb-4 px-2" type="text" id="input" name="text" rows="4" cols="40" placeholder="Enter something to translate..." hx-vals="."></textarea>
+      <div class="flex flex-row items-center py-5 mb-4">
+        <select name="language" class="leading-6 hover:cursor-pointer h-full mr-2 mt-4 px-4 py-2 w-2/3 md:w-auto appearance-none border rounded bg-gray-light text-gray-700 focus:outline-none focus:shadow-outline" id="language-select">
+          <option value="" selected disabled>Select a language</option>
           <option value="pirate">🏴‍☠ Pirate</option>
-          <option value="yoda" class="font-dokdo">👽 Yoda</option>
-          <option value="valyrian" class="font-lavishly_yours">🐉 Valyrian</option>
-          <option value="shakespeare" class="font-tangerine">📃 Shakespeare</option>
+          <option value="yoda">👽 Yoda</option>
+          <option value="valyrian">🐉 Valyrian</option>
+          <option value="shakespeare">📃 Shakespeare</option>
         </select>
-        <button class="btn" type="submit" hx-disable="!this.value">Translate</button>
+        <button class="btn h-full" type="submit" hx-disable="!this.value">Translate</button>
       </div>
     </form>
   </div>
-  <div id="output" class="flex justify-center my-12 font-bold italic"></div>
+  <div id="output" class="flex justify-center my-12"></div>
+
+  <script>
+    const languageSelect = document.getElementById("language-select");
+    const outputDiv = document.getElementById("output");
+
+    languageSelect.addEventListener("change", () => {
+      const selectedOption = languageSelect.options[languageSelect.selectedIndex];
+      const selectedFont = selectedOption.dataset.font;
+      outputDiv.style.fontFamily = selectedFont ? `'${selectedFont}', sans-serif` : "sans-serif";
+    });
+  </script>
 </body>
